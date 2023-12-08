@@ -21,14 +21,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class plat_ens extends AppCompatActivity {
-    private TextView listmat,nommatiere;
+    private TextView listmat, nommatiere;
 
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plat_ens);
-        listmat=findViewById(R.id.listmat);
+        listmat = findViewById(R.id.listmat);
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
         if (currentUser != null) {
@@ -39,75 +39,25 @@ public class plat_ens extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
-                        String fullName = dataSnapshot.child("fullName").getValue(String.class);
-                        String email = dataSnapshot.child("email").getValue(String.class);
-                        String gender = dataSnapshot.child("gender").getValue(String.class);
-                        Boolean integrationWeb = dataSnapshot.hasChild("integrationWeb") ?
-                                dataSnapshot.child("integrationWeb").getValue(Boolean.class) : false;
-                        Boolean ia = dataSnapshot.hasChild("ia") ?
-                                dataSnapshot.child("ia").getValue(Boolean.class) : false;
-                        Boolean developmentMobile = dataSnapshot.hasChild("developmentMobile") ?
-                                dataSnapshot.child("developmentMobile").getValue(Boolean.class) : false;
                         StringBuilder subjectsText = new StringBuilder();
-                        if (integrationWeb!=null && integrationWeb) {
+
+                        if (dataSnapshot.hasChild("integrationWeb") && dataSnapshot.child("integrationWeb").getValue(Boolean.class)) {
                             subjectsText.append("Integration Web\n");
-                            listmat.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    // Get the text value of the clicked TextView
-                                    String clickedSubject = listmat.getText().toString();
-                                    Log.d("clk", "onClick: "+clickedSubject);
-                                    // Create an Intent
-                                    Intent nextIntent;
-                                    nextIntent = new Intent(plat_ens.this, tableau_integrationweb.class);
-                                    // Add the clicked subject as an extra to the Intent
-                                    nextIntent.putExtra("KEY_SUBJECT", clickedSubject);
-
-                                    // Start the next activity
-                                    startActivity(nextIntent);
-                                    finish();
-                                }
-                            });
-
+                            setListMatOnClickListener("Integration Web", tableau_integrationweb.class);
                         }
-                        if (ia!=null && ia) {
+
+                        if (dataSnapshot.hasChild("ia") && dataSnapshot.child("ia").getValue(Boolean.class)) {
                             subjectsText.append("IA\n");
-                            listmat.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    String clickedSubject = listmat.getText().toString();
-                                    Log.d("clk", "onClick: "+clickedSubject);
-                                    // Create an Intent
-                                    Intent nextIntent;
-                                    nextIntent = new Intent(plat_ens.this, tableau_ia.class);
-                                    // Add the clicked subject as an extra to the Intent
-                                    nextIntent.putExtra("KEY_SUBJECT", clickedSubject);
-                                    startActivity(nextIntent);
-                                    finish();
-                                }
-                            });
+                            setListMatOnClickListener("IA", tableau_ia.class);
                         }
-                        if (developmentMobile!=null && developmentMobile) {
+
+                        if (dataSnapshot.hasChild("developmentMobile") && dataSnapshot.child("developmentMobile").getValue(Boolean.class)) {
                             subjectsText.append("Development Mobile\n");
-                            listmat.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    String clickedSubject = listmat.getText().toString();
-                                    Log.d("clk", "onClick: "+clickedSubject);
-                                    // Create an Intent
-                                    Intent nextIntent;
-                                    nextIntent = new Intent(plat_ens.this, tableau_devmob.class);
-                                    // Add the clicked subject as an extra to the Intent
-                                    nextIntent.putExtra("KEY_SUBJECT", clickedSubject);
-                                    startActivity(nextIntent);
-                                    finish();
-                                }
-                            });
+                            setListMatOnClickListener("Development Mobile", tableau_devmob.class);
                         }
+
                         listmat.setText(subjectsText.toString());
-                    }
-                    else
-                    {
+                    } else {
                         Log.d("TeacherData", "Le nœud Teacher avec l'ID spécifié n'existe pas.");
                     }
                 }
@@ -118,5 +68,24 @@ public class plat_ens extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    private void setListMatOnClickListener(String subject, Class<?> destinationClass) {
+        listmat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("clk", "onClick: " + subject);
+
+                // Create an Intent
+                Intent nextIntent = new Intent(plat_ens.this, destinationClass);
+
+                // Add the clicked subject as an extra to the Intent
+                nextIntent.putExtra("KEY_SUBJECT", subject);
+
+                // Start the next activity
+                startActivity(nextIntent);
+                finish();
+            }
+        });
     }
 }

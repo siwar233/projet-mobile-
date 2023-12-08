@@ -8,6 +8,8 @@ public class Absence {
 
 
 
+
+
     public Absence(){
 
     }
@@ -17,6 +19,7 @@ public class Absence {
         this.email=email;
         this.display=display;
         this.matiere=matiere;
+
 
     }
 }
