@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Register_ens">
+
+    <RelativeLayout
+        android:layout_width="408dp"
+        android:layout_height="723dp"
+        android:layout_margin="15dp"
+        android:background="@color/white"
+        android:padding="15dp"
+        tools:ignore="MissingConstraints">
+
+        <!-- Full Name -->
+        <TextView
+            android:id="@+id/textView_teacher_full_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Full Name"
+            android:textColor="#555555"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/editText_teacher_full_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_teacher_full_name"
+            android:hint="Enter your full name"
+            android:inputType="textPersonName"
+            android:textSize="16sp" />
+
+        <!-- Email -->
+        <TextView
+            android:id="@+id/textView_teacher_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editText_teacher_full_name"
+            android:layout_marginTop="10dp"
+            android:text="Email"
+            android:textColor="#555555"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/editText_teacher_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_teacher_email"
+            android:layout_marginTop="1dp"
+            android:hint="Enter your Email"
+            android:inputType="textEmailAddress"
+            android:padding="6dp"
+            android:textSize="16sp" />
+
+        <!-- Gender -->
+        <TextView
+            android:id="@+id/textView_teacher_gender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editText_teacher_email"
+            android:layout_marginTop="10dp"
+            android:padding="6dp"
+            android:text="Gender"
+            android:textColor="#555555"
+            android:textSize="16sp" />
+
+        <RadioGroup
+            android:id="@+id/radio_group_teacher_gender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_teacher_gender"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radio_teacher_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Female"
+                android:textColor="#555555"
+                android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/radio_teacher_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="Male"
+                android:textColor="#555555"
+                android:textSize="16sp" />
+
+        </RadioGroup>
+
+        <!-- Matières (Subjects) -->
+        <TextView
+            android:id="@+id/textView_teacher_subjects"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/radio_group_teacher_gender"
+            android:layout_marginTop="10dp"
+            android:padding="6dp"
+            android:text="Subjects"
+            android:textColor="#555555"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/teacher_subject_ia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_teacher_subjects"
+            android:layout_marginTop="12dp"
+            android:text="Intelligence Artificielle" />
+
+        <CheckBox
+            android:id="@+id/teacher_subject_inweb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/teacher_subject_ia"
+            android:layout_marginTop="10dp"
+            android:text="Integration web" />
+
+        <CheckBox
+            android:id="@+id/teacher_subject_devmob"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/teacher_subject_inweb"
+            android:layout_marginTop="10dp"
+            android:text="Developpement mobile" />
+
+
+        <TextView
+            android:id="@+id/textView_teacher_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/teacher_subject_inweb"
+            android:layout_marginTop="75dp"
+            android:padding="6dp"
+            android:text="Password"
+            android:textColor="#555555"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/editText_teacher_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_teacher_password"
+            android:layout_marginTop="29dp"
+            android:hint="Enter your password"
+            android:inputType="textPassword"
+            android:padding="6dp"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/button_teacher_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editText_teacher_password"
+            android:layout_marginTop="30dp"
+            android:text="Register" />
+
+        <TextView
+            android:id="@+id/haveaccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/button_teacher_register"
+            android:layout_marginBottom="-29dp"
+            android:gravity="center"
+            android:text="i have an account" />
+    </RelativeLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
